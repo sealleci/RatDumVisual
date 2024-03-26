@@ -1,0 +1,134 @@
+@content_width: 80vw;
+@row-height: 3rem;
+@bg: rgb(239, 241, 247);
+@shadow-color: rgb(214, 215, 222);
+@green-color: rgb(22, 202, 166);
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: @bg;
+}
+
+.title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    margin: 2vh;
+    width: @content_width;
+
+    &__text {
+        color: rgb(62, 64, 68);
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 6rem;
+    height: 2rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    background: linear-gradient(145deg, #2bb6ff, #2499dd);
+    box-shadow: 5px 5px 10px #c9cacf,
+        -5px -5px 10px #ffffff;
+
+    &:hover {
+        background: linear-gradient(145deg, #21a4eb, #1c8bcc);
+    }
+
+    &:active {
+        background: linear-gradient(145deg, #1b9ce1, #1783c1);
+    }
+
+    &__text {
+        color: white;
+        font-size: 1rem;
+        user-select: none;
+    }
+
+
+}
+
+.sheet_wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: @content_width;
+    height: 75vh;
+    overflow-x: scroll;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        height: .75rem;
+        width: .75rem;
+        box-shadow: inset 2px 2px 5px rgba(0, 0, 0, .1);
+        border-radius: 5rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: rgb(247, 184, 194);
+        border-radius: 5rem;
+    }
+
+    &::-webkit-scrollbar-corner {
+        background-color: transparent;
+    }
+}
+
+@keyframes row-in {
+    0% {
+        opacity: 0%;
+        height: 0;
+    }
+
+    100% {
+        opacity: 100%;
+        height: @row-height;
+    }
+}
+
+.sheet {
+    border-spacing: 0;
+    font-size: 1rem;
+    min-width: 100%;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+    &__row {
+        height: @row-height;
+    }
+
+    &__body>&__row {
+        color: rgb(62, 64, 68);
+        box-shadow: 0 -1px 0 @shadow-color;
+        animation: row-in ease-out .5s 1 alternate;
+        transition: background-color .1s, color .1s;
+
+        &:hover {
+            color: @bg;
+            background-color: @green-color;
+        }
+    }
+
+    &__col {
+        padding: 0 1.25rem 0 .25rem;
+    }
+
+    &__header {
+        position: sticky;
+        top: 0;
+        color: @green-color;
+        background-color: @bg;
+        box-shadow: 0 1px 1px @shadow-color;
+        z-index: 100;
+    }
+}
